@@ -3461,6 +3461,72 @@ public:
     }
 };
 
+
+//npc_fire_elemental
+enum FireElemental
+{
+    SPELL_FIRE_NOVA						= 12470,
+    SPELL_FIRE_BLAST					= 57984,
+    SPELL_FIRE_SHIELD					= 13376
+};
+class npc_fire_elemental : public CreatureScript
+{
+public:
+    npc_fire_elemental() : CreatureScript("npc_fire_elemental") { }
+
+    struct npc_fire_elementalAI : public ScriptedAI
+    {
+        npc_fire_elementalAI(Creature* creature) : ScriptedAI(creature) {}
+
+		uint32 m_uiFireNovaTimer;
+		uint32 m_uiFireBlastTimer;
+		uint32 m_uiFireShieldTimer;
+
+        void Reset()
+        {
+			m_uiFireNovaTimer = 0;
+			m_uiFireBlastTimer = urand(2000, 6000);
+			m_uiFireShieldTimer = urand(8000, 15000);
+        }
+
+        void DamageTaken(Unit* /*killer*/, uint32& damage)
+        {
+
+        }
+
+        void UpdateAI(const uint32 diff)
+        {
+            if (!UpdateVictim())
+                return;
+
+			if(m_uiFireBlastTimer <= diff)
+			{
+				DoCast(me->getVictim(), SPELL_FIRE_BLAST);
+				m_uiFireBlastTimer = urand(6000, 8000);
+			} m_uiFireBlastTimer -= diff;
+
+			if(m_uiFireShieldTimer <= diff)
+			{
+				DoCast(me->getVictim(), SPELL_FIRE_SHIELD);
+				m_uiFireShieldTimer = urand(8000, 15000);
+			} m_uiFireShieldTimer -= diff;
+
+			if(m_uiFireNovaTimer <= diff)
+			{
+				DoCast(me->getVictim(), SPELL_FIRE_NOVA);
+				m_uiFireNovaTimer = urand(8000, 15000);
+			} m_uiFireNovaTimer -= diff;
+
+            DoMeleeAttackIfReady();
+        }
+    };
+
+    CreatureAI* GetAI(Creature* creature) const
+    {
+        return new npc_fire_elementalAI(creature);
+    }
+};
+
 void AddSC_npcs_special()
 {
     new npc_air_force_bots;
@@ -3498,4 +3564,5 @@ void AddSC_npcs_special()
     new npc_frostfire_orb;
     new npc_power_word_barrier;
     new npc_shadowy_apparition;
+	new npc_fire_elemental;
 }
