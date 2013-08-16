@@ -7253,16 +7253,6 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
                         return false;
                     break;
                 }
-                // Seal of Justice
-                case 20164:
-                {
-					//Crusader Strike, Templars Verdict, Shield of the Righteous
-					if(procSpell->Id != 35395  && procSpell->Id != 85256 && procSpell->Id != 5360)	
-						return false;
-
-						CastSpell(victim, 20170, true);
-                    break;
-                }
                 // Seal of Corruption
                 case 53736:
                 {
