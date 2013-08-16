@@ -301,6 +301,9 @@ void PetAI::AttackStart(Unit* target)
     if (!CanAttack(target))
         return;
 
+	if(target->GetCreatureType() == CREATURE_TYPE_CRITTER)
+		return;
+
     if (Unit* owner = me->GetOwner())
         owner->SetInCombatWith(target);
 
