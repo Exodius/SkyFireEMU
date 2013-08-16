@@ -85,6 +85,9 @@ TotemAI::UpdateAI(const uint32 /*diff*/)
         me->VisitNearbyObject(max_range, checker);
     }
 
+	if(victim->GetCreatureType() == CREATURE_TYPE_CRITTER)
+		return;
+
     // If have target
     if (victim)
     {
