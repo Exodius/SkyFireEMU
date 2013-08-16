@@ -7210,22 +7210,32 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
                     }
                     break;
                 }
-                // Seal of Vengeance (damage calc on apply aura)
+                // Seal of Vengeance/Truth (damage calc on apply aura)
                 case 31801:
                 {
                     if (effIndex != 0)                       // effect 1, 2 used by seal unleashing code
                         return false;
 
-                    // At melee attack or Hammer of the Righteous spell damage considered as melee attack
-                    bool stacker = !procSpell || procSpell->Id == 53595 || procSpell->Id == 71433 || procSpell->Id == 71434;
+					// At melee attack or Hammer of the Righteous spell damage considered as melee attack
+                    bool stacker = !procSpell
+						|| procSpell->Id == 53595	//Hammer of the Righteous
+						|| procSpell->Id == 35395	//Crusader Strike
+						|| procSpell->Id == 85256	//Templars Verdict
+						|| procSpell->Id == 879		//Exorcism
+						|| procSpell->Id == 31804	//Judgement 
+						|| procSpell->Id == 24275	//Hammer of Wrath 
+						|| procSpell->Id == 53600	//Shield of the Righteous
+						|| procSpell->Id == 71433 
+						|| procSpell->Id == 71434;
 
                      // spells with SPELL_DAMAGE_CLASS_MELEE excluding Judgements
-                    bool damager = procSpell && procSpell->EquippedItemClass != -1;
+                    //bool damager = procSpell && procSpell->EquippedItemClass != -1;
 
-                    if (!stacker && !damager)
+                    if (!stacker) //&& !damager)
                         return false;
 
                     triggered_spell_id = 31803;
+					break;
 
                     // On target with 5 stacks of Holy Vengeance direct damage is done
                     if (Aura* aur = victim->GetAura(triggered_spell_id, GetGUID()))
@@ -7241,6 +7251,16 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
 
                     if (!stacker)
                         return false;
+                    break;
+                }
+                // Seal of Justice
+                case 20164:
+                {
+					//Crusader Strike, Templars Verdict, Shield of the Righteous
+					if(procSpell->Id != 35395  && procSpell->Id != 85256 && procSpell->Id != 5360)	
+						return false;
+
+						CastSpell(victim, 20170, true);
                     break;
                 }
                 // Seal of Corruption
