@@ -301,9 +301,6 @@ void PetAI::AttackStart(Unit* target)
     if (!CanAttack(target))
         return;
 
-	if(target->GetCreatureType() == CREATURE_TYPE_CRITTER)
-		return;
-
     if (Unit* owner = me->GetOwner())
         owner->SetInCombatWith(target);
 
@@ -450,7 +447,7 @@ bool PetAI::CanAttack(Unit* target)
     // target based on CommandState, ReactState and other flags
 
     // Returning - check first since pets returning ignore attacks
-    if (me->GetCharmInfo()->IsReturning())
+    if (me->GetCharmInfo()->IsReturning() && target->GetCreatureType() == CREATURE_TYPE_CRITTER && !me->GetCharmInfo()->HasCommandState(COMMAND_ATTACK))
         return false;
 
     // Passive - check now so we don't have to worry about passive in later checks
