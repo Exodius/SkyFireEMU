@@ -7286,6 +7286,18 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
                         return false;
                     break;
                 }
+                // Seal of Justice
+                case 20164:
+                {
+					//This spell must proc when melee attack or TV, CS, SotR.
+					//Templars Verdict, Crusader Strike, Shield of the Righteous
+					bool justice = !procSpell || procSpell->Id == 85256 || procSpell->Id == 35395 || procSpell->Id == 53600;
+					if(!justice)
+						return false;
+
+					CastSpell(victim, 20170, true);
+					break;
+                }
                 // Spiritual Attunement
                 case 31785:
                 case 33776:
