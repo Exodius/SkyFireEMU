@@ -3157,7 +3157,7 @@ public:
     {
         npc_flame_orbAI(Creature *creature) : ScriptedAI(creature)
         {
-            x = me->GetPositionX();
+            x = me->GetPositionX()+4;
             y = me->GetPositionY();
             z = me->GetOwner()->GetPositionZ()+2;
             o = me->GetOrientation();
@@ -3245,7 +3245,7 @@ public:
     {
         npc_frostfire_orbAI(Creature* creature) : ScriptedAI(creature)
         {
-            x = me->GetPositionX();
+            x = me->GetPositionX()+4;
             y = me->GetPositionY();
             z = me->GetOwner()->GetPositionZ()+2;
             o = me->GetOrientation();
