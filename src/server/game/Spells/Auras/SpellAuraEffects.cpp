@@ -704,6 +704,9 @@ int32 AuraEffect::CalculateAmount(Unit* caster)
             // Last Stand Hunter
             if (GetId() == 53478)
                 amount = GetBase()->GetUnitOwner()->CountPctFromMaxHealth(30);
+			//Soulburn: Healthstone
+            if (GetId() == 79437)
+                amount = GetBase()->GetUnitOwner()->CountPctFromMaxHealth(20);
             break;
         case SPELL_AURA_MOD_INCREASE_ENERGY:
             // Hymn of Hope
