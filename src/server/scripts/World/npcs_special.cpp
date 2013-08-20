@@ -3157,9 +3157,9 @@ public:
     {
         npc_flame_orbAI(Creature *creature) : ScriptedAI(creature)
         {
-            x = me->GetPositionX()+4;
+            x = me->GetPositionX();
             y = me->GetPositionY();
-            z = me->GetOwner()->GetPositionZ()+2;
+            z = me->GetOwner()->GetPositionZ()+3;
             o = me->GetOrientation();
             me->NearTeleportTo(x, y, z, o, true);
             angle = me->GetOwner()->GetAngle(me);
@@ -3249,9 +3249,9 @@ public:
     {
         npc_frostfire_orbAI(Creature* creature) : ScriptedAI(creature)
         {
-            x = me->GetPositionX()+4;
+            x = me->GetPositionX();
             y = me->GetPositionY();
-            z = me->GetOwner()->GetPositionZ()+2;
+            z = me->GetOwner()->GetPositionZ()+3;
             o = me->GetOrientation();
             me->NearTeleportTo(x, y, z, o, true);
             angle = me->GetOwner()->GetAngle(me);
