@@ -3213,7 +3213,11 @@ public:
             if (DamageTimer <= diff)
             {
                 if (Unit* target = me->SelectNearestTarget(20))
+				{
+					if (target->GetCreatureType() == CREATURE_TYPE_CRITTER || target->IsPolymorphed())
+						return;
                     DoCast(target, SPELL_FLAME_ORB_DAMAGE);
+				}
 
                 DamageTimer = 1 * IN_MILLISECONDS;
             }
@@ -3298,10 +3302,14 @@ public:
             if (damageTimer <= diff)
             {
                 if (Unit* target = me->SelectNearestTarget(20))
+				{
+					if (target->GetCreatureType() == CREATURE_TYPE_CRITTER || target->IsPolymorphed())
+						return;
                     if (me->GetOwner()->HasAura(84726))
                         DoCast(target, SPELL_FROSTFIRE_ORB_DAMAGE_RANK_1);
                     else
                         DoCast(target, SPELL_FROSTFIRE_ORB_DAMAGE_RANK_2);
+				}
 
                 damageTimer = 1 * IN_MILLISECONDS;
             }
