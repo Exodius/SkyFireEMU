@@ -5954,8 +5954,8 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
 
                     break;
                 }
-                // Glyph of Polymorph
-                case 56375:
+                case 56375:	// Glyph of Polymorph
+				case 56250:	// Glyph of Seduction
                 {
                     if (!target)
                         return false;
