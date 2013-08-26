@@ -1012,8 +1012,9 @@ bool Guardian::InitStatsForLevel(uint8 petLevel)
                     SetDisplayId(_owner->GetDisplayId());
                     if (!pInfo)
                     {
+						uint32 HealthValue = _owner->ToPlayer()->GetHealth();
                         SetCreateMana(28 + 30*petLevel);
-                        SetCreateHealth(28 + 10*petLevel);
+                        SetCreateHealth((28 + 10*petLevel) + HealthValue / 3);
                     }
                     break;
                 }
