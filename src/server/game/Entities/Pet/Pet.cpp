@@ -1014,7 +1014,7 @@ bool Guardian::InitStatsForLevel(uint8 petLevel)
                     {
 						uint32 HealthValue = _owner->ToPlayer()->GetHealth();
                         SetCreateMana(28 + 30*petLevel);
-                        SetCreateHealth((28 + 10*petLevel) + HealthValue / 3);
+                        SetCreateHealth((28 + 10*petLevel) + HealthValue / 2);
                     }
                     break;
                 }
