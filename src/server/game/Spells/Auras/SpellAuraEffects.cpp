@@ -5072,6 +5072,10 @@ void AuraEffect::HandleAuraDummy(AuraApplication const* aurApp, uint8 mode, bool
                     if (target->HasAura(92364, GetCasterGUID())) // Get talent Malfurion's gift rank 2
                         if (roll_chance_i(4)) // Procs only 4% of the time
                             target->CastSpell(caster, 16870, true, NULL, this); // Clearcasting
+
+					// Item - Druid T11 Restoration 4P Bonus (Spirit)
+					if (caster->HasAura(90158) && GetBase()->GetStackAmount() == 3)	
+						caster->CastSpell(caster, 90159, true);
                     break;
                 case 39850:                                     // Rocket Blast
                     if (roll_chance_i(20))                       // backfire stun
