@@ -3021,6 +3021,7 @@ void SpellMgr::LoadSpellCustomAttr()
                 break;
             case 56641: // Steady Shot
                 spellInfo->Effects[2].TargetA = TARGET_UNIT_CASTER;
+				spellInfo->AttributesEx |= SPELL_ATTR1_NOT_BREAK_STEALTH;
                 break;
             case 87934: // Serpent Spread
             case 87935:
@@ -3728,6 +3729,29 @@ void SpellMgr::LoadSpellCustomAttr()
                 break;
             case 89000: case 95177: // Fel Firestorm
                 spellInfo->Effects[0].RadiusEntry = sSpellRadiusStore.LookupEntry(15); // (3)
+                break;
+			//Part for Camouflage (Hunter spell).
+			case 5118:	//Aspect of the Cheetah
+			case 13159:	//Aspect of the Pack
+			case 77769:	//Trap Launcher
+            case 34600: //Snake Trap
+            case 13809: //Ice Trap
+			case 82941:	//Ice Trap (Trap Laucher)
+            case 13813: //Explosive Trap
+			case 82939:	//Explosive Trap (Trap Launcher)
+			case 13795: //Immolation Trap
+            case 1499:  //Freezing Trap
+			case 60192:	//Freezing Trap (Trap Launcher)
+			case 136:	//Mend Pet
+			case 982:	//Revive Pet
+			case 1513:	//Scare Beast
+			case 1543:	//Flare
+			case 19434: //Aimed Shot
+			case 77767:	//Cobra Shot
+			case 23989:	//Readiness
+			case 19263:	//Deterrence
+				//This list of spell dont remove hunter Camouflage.
+                spellInfo->AttributesEx |= SPELL_ATTR1_NOT_BREAK_STEALTH;
                 break;
             case 18500: // Wing Buffet
             case 33086: // Wild Bite
