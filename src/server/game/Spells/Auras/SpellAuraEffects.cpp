@@ -1717,7 +1717,7 @@ void AuraEffect::HandleModCamouflage(AuraApplication const *aurApp, uint8 mode, 
     {
         target->CastSpell(target, 80326, true);  // Camouflage
     }
-    else if (!(target->isCamouflaged()))
+    else if (!(target->isCamouflaged()) || aurApp->GetRemoveMode() == AURA_REMOVE_BY_EXPIRE)
     {
         target->RemoveAura(80326);
         target->RemoveAura(80325);
