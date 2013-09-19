@@ -3002,9 +3002,6 @@ void SpellMgr::LoadSpellCustomAttr()
             case 90174: // Divine Purpose Proc
                 spellInfo->ProcCharges = 1;
                 break;
-            case 879:   //Exorcism
-                spellInfo->AttributesEx2 |= SPELL_ATTR2_NOT_RESET_AUTO_ACTIONS;
-                break;
             case 88667: // Holy Word: Sanctuary 3yd Dummy
                 spellInfo->SpellFamilyName = SPELLFAMILY_PRIEST;
                 spellInfo->Effects[0].RadiusEntry = sSpellRadiusStore.LookupEntry(15);
