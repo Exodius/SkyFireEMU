@@ -3599,6 +3599,7 @@ void SpellMgr::LoadSpellCustomAttr()
                 break;
             case 82661: // Aspect of the Fox
                 spellInfo->Effects[0].ApplyAuraName = SPELL_AURA_PROC_TRIGGER_SPELL;
+                spellInfo->AttributesEx |= SPELL_ATTR1_NOT_BREAK_STEALTH;
                 break;
             case 88691: // Marked for Death Tracking
                 spellInfo->Effects[0].ApplyAuraName = SPELL_AURA_MOD_STALKED;
@@ -3733,6 +3734,8 @@ void SpellMgr::LoadSpellCustomAttr()
 			//Part for Camouflage (Hunter spell).
 			case 5118:	//Aspect of the Cheetah
 			case 13159:	//Aspect of the Pack
+            case 13165: //Aspect of the Hawk
+            case 20043: //Aspect of the Wild
 			case 77769:	//Trap Launcher
             case 34600: //Snake Trap
             case 13809: //Ice Trap
