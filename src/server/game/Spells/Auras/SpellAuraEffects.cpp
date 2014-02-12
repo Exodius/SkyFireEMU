@@ -704,6 +704,9 @@ int32 AuraEffect::CalculateAmount(Unit* caster)
             // Last Stand Hunter
             if (GetId() == 53478)
                 amount = GetBase()->GetUnitOwner()->CountPctFromMaxHealth(30);
+			//Soulburn: Healthstone
+            if (GetId() == 79437)
+                amount = GetBase()->GetUnitOwner()->CountPctFromMaxHealth(20);
             break;
         case SPELL_AURA_MOD_INCREASE_ENERGY:
             // Hymn of Hope
@@ -1714,7 +1717,7 @@ void AuraEffect::HandleModCamouflage(AuraApplication const *aurApp, uint8 mode, 
     {
         target->CastSpell(target, 80326, true);  // Camouflage
     }
-    else if (!(target->isCamouflaged()))
+    else if (!target->isCamouflaged() || aurApp->GetRemoveMode() == AURA_REMOVE_BY_EXPIRE || aurApp->GetRemoveMode() == AURA_REMOVE_BY_CANCEL)
     {
         target->RemoveAura(80326);
         target->RemoveAura(80325);
@@ -5069,6 +5072,10 @@ void AuraEffect::HandleAuraDummy(AuraApplication const* aurApp, uint8 mode, bool
                     if (target->HasAura(92364, GetCasterGUID())) // Get talent Malfurion's gift rank 2
                         if (roll_chance_i(4)) // Procs only 4% of the time
                             target->CastSpell(caster, 16870, true, NULL, this); // Clearcasting
+
+					// Item - Druid T11 Restoration 4P Bonus (Spirit)
+					if (caster->HasAura(90158) && GetBase()->GetStackAmount() == 3)	
+						caster->CastSpell(caster, 90159, true);
                     break;
                 case 39850:                                     // Rocket Blast
                     if (roll_chance_i(20))                       // backfire stun

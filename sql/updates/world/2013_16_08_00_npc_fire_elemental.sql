@@ -1,0 +1,1 @@
+UPDATE creature_template SET ScriptName = "npc_fire_elemental" WHERE entry IN (15439);

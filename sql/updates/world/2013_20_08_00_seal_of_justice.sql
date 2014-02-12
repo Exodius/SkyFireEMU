@@ -1,0 +1,1 @@
+UPDATE spell_proc_event SET SpellFamilyName = 10, procFlags = 0, ppmRate = 0, Cooldown = 1 WHERE entry IN (20164);

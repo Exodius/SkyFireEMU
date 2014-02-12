@@ -921,8 +921,9 @@ bool Guardian::InitStatsForLevel(uint8 petLevel)
                 {
                     if (!pInfo)
                         SetCreateHealth(100 + 120 * petLevel);
-                    SetBaseWeaponDamage(BASE_ATTACK, MINDAMAGE, float(petLevel - (petLevel / 4)));
-                    SetBaseWeaponDamage(BASE_ATTACK, MAXDAMAGE, float(petLevel + (petLevel / 4)));
+					uint32 bonusDamage = _owner->ToPlayer()->GetBaseSpellPower();
+                    SetBaseWeaponDamage(BASE_ATTACK, MINDAMAGE, float(petLevel - (petLevel / 4) + bonusDamage / 2));
+                    SetBaseWeaponDamage(BASE_ATTACK, MAXDAMAGE, float(petLevel + (petLevel / 4) + bonusDamage / 2));
                     break;
                 }
                 case 15438: // fire elemental
@@ -1012,8 +1013,9 @@ bool Guardian::InitStatsForLevel(uint8 petLevel)
                     SetDisplayId(_owner->GetDisplayId());
                     if (!pInfo)
                     {
+						uint32 HealthValue = _owner->ToPlayer()->GetHealth();
                         SetCreateMana(28 + 30*petLevel);
-                        SetCreateHealth(28 + 10*petLevel);
+                        SetCreateHealth((28 + 10*petLevel) + HealthValue / 2);
                     }
                     break;
                 }
